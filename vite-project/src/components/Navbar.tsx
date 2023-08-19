@@ -12,7 +12,7 @@ const styles = {
     navbar: { 
         display : "flex",
       flexGrow: 1,   
-      justifyContent: "space-evenly"
+      justifyContent: "space-around"
     },
     navItem: {
       marginLeft: '20px',
@@ -22,12 +22,13 @@ const styles = {
   };
   
 const Navbar = () => {
+    const userDataString = localStorage.getItem("userData");
     const navigate = useNavigate()
     const LogOut = ()=> {
         localStorage.removeItem("userData");
         navigate("/")
     }
-    
+
   return (
     <AppBar position="static" sx={styles.nav }>
     <Toolbar>
@@ -39,7 +40,7 @@ const Navbar = () => {
           Blog
         </Link>
 
-        <Button variant="contained" onClick={LogOut}>LogOut</Button>
+       {userDataString &&  <Button variant="contained" onClick={LogOut}>LogOut</Button>}
       </Typography>
     </Toolbar>
   </AppBar>
