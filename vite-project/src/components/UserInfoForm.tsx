@@ -1,6 +1,6 @@
  
 import { useState } from "react";
-
+import {  useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 
 import "../App.css"
@@ -8,12 +8,17 @@ const UserInfoForm = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (name && phoneNumber && email) {
       const userData = { name, phoneNumber, email };
       localStorage.setItem("userData", JSON.stringify(userData));
       alert("Login Successful !")
+
+      setTimeout(() => {
+        navigate("/data");
+      }, 3000);
     }
   };
 
